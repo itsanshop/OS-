@@ -21,6 +21,7 @@ class lifo{
     }
 }
 document.getElementById("submit").addEventListener("click",LIFO);
+
 function LIFO(){
     let res = document.getElementById("input").value.split(" ");
     let frames = document.getElementById("frames").value;
