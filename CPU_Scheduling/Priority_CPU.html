@@ -83,12 +83,11 @@
     </div>
 </nav>
 
-
-
 <div class="block">
     <div class="overlay"></div>
     <div class="heading">
-        <h1 class="animate__animated animate__slideInUp" data-aos="fade-in" style="text-align: center;">FCFS
+        <h1 class="animate__animated animate__slideInUp" data-aos="fade-in" style="text-align: center;">Priority
+            Scheduling
         </h1>
     </div>
     <div class="arrow-box">
@@ -105,20 +104,34 @@
 
     <div class="mid-cards">
         <div class="card text-white bg-dark mb-3">
-            <div class="card-header bg-dark" style="font-size: 2rem;">FCFS</div>
+            <div class="card-header bg-dark" style="font-size: 2rem;">Priority Scheduling</div>
             <div class="card-body">
-                <p class="card-text">First Come First Serve is the full form of FCFS. It is the easiest and most simple
-                    CPU scheduling algorithm. In this type of algorithm, the process which requests the CPU gets the CPU
-                    allocation first. This scheduling method can be managed with a FIFO queue.</p><br>
+                <p class="card-text">Priority Scheduling is a method of scheduling processes that is based on priority.
+                    In this algorithm, the scheduler selects the tasks to work as per the priority.If two jobs having
+                    the same priority are READY, it works on a FIRST COME, FIRST SERVED basis.
+                    In priority scheduling, a number is assigned to each process that indicates its priority level.In
+                    this type of scheduling algorithm, if a newer process arrives, that is having a higher priority than
+                    the currently running process, then the currently running process is preempted.
+                </p><br>
                 <div class="card-header bg-dark" style="font-size: 1.5rem; padding: 0; border: 0;">Advantages</div>
                 <p class="card-text">
                 <ol>
                     <li>
-                        It is easy to implement and use.
+                        Processes are executed on the basis of priority so high priority does not need to wait for long
+                        which saves time.
                     </li>
                     <br>
                     <li>
-                        Its implementation is based on FIFO queue.
+                        This method provides a good mechanism where the relative important of each process may be
+                        precisely defined.
+                    </li>
+                    <br>
+                    <li>
+                        Suitable for applications with fluctuating time and resource requirements.
+                    </li>
+                    <br>
+                    <li>
+                        Easy to use scheduling method.
                     </li>
                     <br>
                 </ol>
@@ -128,11 +141,22 @@
                 <p class="card-text">
                 <ol>
                     <li>
-                        Poor in performance as average wait time is high.
+                        If the system eventually crashes, all low priority processes get lost.
                     </li>
                     <br>
                     <li>
-                        First come first serve suffers from convoy effect.
+                        If high priority processes take lots of CPU time, then the lower priority processes may starve
+                        and will be postponed for an indefinite time.
+                    </li>
+                    <br>
+                    <li>
+                        A process will be blocked when it is ready to run but has to wait for the CPU because some other
+                        process is running currently.
+                    </li>
+                    <br>
+                    <li>
+                        If a new higher priority process keeps on coming in the ready queue, then the process which is
+                        in the waiting state may need to wait for a long duration of time.
                     </li>
                     <br>
                 </ol>
@@ -145,35 +169,23 @@
             <div class="card-body" style="overflow-y: scroll;">
                 <p class="card-text">
                 <ol>
-                    <li>Input the processes along with their burst time (BT).
+                    <li>First input the processes with their arrival time, burst time and priority.
                     </li>
                     <br>
                     <li>
-                        Find waiting time (WT) for all processes.
+                        First process will schedule, which have the lowest arrival time, if two or more processes will
+                        have lowest arrival time, then whoever has higher priority will schedule first.
                     </li>
                     <br>
                     <li>
-                        As first process that comes need not to wait so
-                        waiting time for process 1 will be 0 i.e. wt[0] = 0.
+                        Now further processes will be schedule according to the arrival time and priority of the
+                        process. (Here we are assuming that lower the priority number having higher priority). If two
+                        process priority are same then sort according to process number.
                     </li>
                     <br>
                     <li>
-                        Find waiting time for all other processes.
+                        Once all the processes have been arrived, we can schedule them based on their priority.
                     </li>
-                    <br>
-                    <li>
-                        Find turnaround time = waiting_time + burst_time
-                        for all processes.
-                    </li>
-                    <br>
-                    <li>
-                        Find average waiting time.
-                    </li>
-                    <br>
-                    <li>
-                        Similarly, find average turnaround time.
-                    </li>
-                    <br>
                 </ol>
                 </p>
             </div>
@@ -186,7 +198,7 @@
 
     <div class="mid-heading-wrapper">
         <div class="mid-heading">
-            <h1 class="hover-border">CPU scheduler-FCFS</h1>
+            <h1 class="hover-border">CPU scheduler - Priority scheduling</h1>
         </div>
     </div>
     <!--Implement from here-->
@@ -202,15 +214,21 @@
                  style="display: flex; flex-direction: row; align-items: center; justify-content: center; flex-wrap: wrap;">
                 <div
                         style="margin: 10px; width: fit-content; display: flex; justify-content: center; align-items: center;">
+                    <strong style="white-space: nowrap;">Burst Time:</strong>
+                    <input class="input" type="text" style="width: 100%; min-width: 225px; margin: 5px;" id="Bursttime">
+                </div>
+                <div
+                        style="margin: 10px; width: fit-content; display: flex; justify-content: center; align-items: center;">
                     <strong style="white-space: nowrap;">Arrival Time:</strong>
                     <input class="input" type="text" style="width: 100%; min-width: 225px; margin: 5px;"
                            id="Arrivaltime">
                 </div>
                 <div
                         style="margin: 10px; width: fit-content; display: flex; justify-content: center; align-items: center;">
-                    <strong style="white-space: nowrap;">Burst Time:</strong>
-                    <input class="input" type="text" style="width: 100%; min-width: 225px; margin: 5px;" id="Bursttime">
+                    <strong style="white-space: nowrap;">Priority:</strong>
+                    <input class="input" type="text" style="width: 100%; min-width: 225px; margin: 5px;" id="Priority">
                 </div>
+
             </div>
             <button id="submit" type="button" class="btn btn-dark last_button input"
                     style="margin: 10px; margin-top: 20px;min-width: 80px;">Submit
@@ -219,6 +237,7 @@
 
 
         <table style="margin-top: 30px;" class="table table-bordered table-condensed" id="ProcessTable"></table>
+
         <div class="container my-4">
             <hr class="my-4">
             <div>
@@ -415,7 +434,7 @@
 <script src="../Assets/js/Chart.min.js"></script>
 <script src="../Assets/js/search.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
-<script src="../Assets/js/CPU_FCFS.js"></script>
+<script src="../Assets/js/CPU_Priority.js"></script>
 </body>
 
 </html>

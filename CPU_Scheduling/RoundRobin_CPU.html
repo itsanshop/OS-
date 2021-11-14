@@ -24,7 +24,7 @@
 
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="diskscheduling_index.html">
+        <a class="navbar-brand" href="cpu_schdeuling_index.html">
             <img id="logo" src="../Assets/images/website_logo1.png" alt="logo">
             <div class="hover-border">CPU Scheduling</div>
         </a>
@@ -50,13 +50,14 @@
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="../Page_Replacement/pagereplacement_index.html">Page
                             Replacement</a></li>
-                        <li><a class="dropdown-item" href="diskscheduling_index.html">Disk Scheduling</a></li>
-                        <li><a class="dropdown-item" href="#">CPU Scheduling</a></li>
+                        <li><a class="dropdown-item" href="../Disk_Scheduling/diskscheduling_index.html">Disk
+                            Scheduling</a></li>
+                        <li><a class="dropdown-item" href="cpu_schdeuling_index.html">CPU Scheduling</a></li>
                         <li><a class="dropdown-item" href="#">Concurrency</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../compare.html"><span class="hover-border">Compare</span></a>
+                    <a class="nav-link" href="#"><span class="hover-border">Compare</span></a>
                 </li>
 
                 <li class="nav-item">
@@ -69,7 +70,8 @@
                 <div class="dropdown">
                     <input id="search-input" class="form-control me-2 dropdown-toggle" data-bs-toggle="dropdown"
                            aria-expanded="false" placeholder="Type to search...">
-                    <ul id="suggestions" class="dropdown-menu dropdown-menu-dark" aria-labelledby="search-button"></ul>
+                    <ul id="suggestions" class="dropdown-menu dropdown-menu-dark" aria-labelledby="search-button">
+                    </ul>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                          class="bi bi-search" viewBox="0 0 16 16" style="position: absolute; right: 15px;">
                         <path
@@ -227,7 +229,12 @@
 
 
         <table style="margin-top: 30px;" class="table table-bordered table-condensed" id="ProcessTable"></table>
-
+        <div class="container my-4">
+            <hr class="my-4">
+            <div>
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
 
     </div>
 

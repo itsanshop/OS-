@@ -77,7 +77,6 @@ function SRJF_CPU() {
             }
 
 
-
             if (RT[shortest] === 0) {
                 complete++;
                 check = false;
@@ -92,7 +91,7 @@ function SRJF_CPU() {
             t++;
         }
 
-        for (let i = 0; i < AT.length; i++){
+        for (let i = 0; i < AT.length; i++) {
             TAT[i] = mat[i][2] + WT[i];
             CT[i] = AT[i] + TAT[i]
         }
@@ -151,4 +150,58 @@ function TableGen(Process, AT, BT, CT, WT, TAT, tablename) {
 
 
     document.getElementById(tablename).innerHTML += table;
+    Make_chart(CT)
+}
+
+
+function Make_chart(CT) {
+    var ctxB = document.getElementById("barChart").getContext('2d');
+
+    let labs = new Array(CT.length);
+    let BackCol = new Array(CT.length);
+    let BordCol = new Array(CT.length);
+
+
+    for (let i = 0; i < CT.length; i++) {
+        labs[i] = "P - " + (parseInt(i) + parseInt(1));
+        BackCol[i] = "rgba(0, 0, 0, 0.2)";
+        BordCol[i] = "rgba(0, 0, 0, 1)";
+    }
+
+
+    var myBarChart = new Chart(ctxB, {
+        type: 'bar',
+        data: {
+            labels: labs,
+            datasets: [{
+                label: 'Completion time taken by process',
+                data: CT,
+                backgroundColor: BackCol,
+                borderColor: BordCol,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                labels: {
+                    fontSize: 22
+                }
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        fontStyle: 'bold',
+                        fontSize: 25
+                    }
+                }],
+
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        fontSize: 20
+                    }
+                }]
+            }
+        }
+    });
 }

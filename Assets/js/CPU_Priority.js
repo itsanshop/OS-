@@ -1,25 +1,29 @@
-document.getElementById("submit").addEventListener("click", SJF_CPU);
+document.getElementById("submit").addEventListener("click", Priority_CPU);
 
-function SJF_CPU() {
+function Priority_CPU() {
 
     console.log("Clicked SUB");
 
     let AT = document.getElementById("Arrivaltime").value.split(",").map(Number);
     let BT = document.getElementById("Bursttime").value.split(",").map(Number);
+    let Priority = document.getElementById("Priority").value.split(",").map(Number);
 
     AT = AT.filter(n => typeof n === 'number');
     BT = BT.filter(n => typeof n === 'number');
+    Priority = Priority.filter(n => typeof n === 'number');
 
     console.log(AT);
     console.log(BT);
+    console.log(Priority)
 
 
-    if (AT.length !== BT.length || AT.length === 0) {
+    if (AT.length !== BT.length || AT.length === 0 || Priority.length !== BT.length) {
 
         alert("Incorrect Parameters")
 
         document.getElementById("Arrivaltime").value = "";
         document.getElementById("Bursttime").value = "";
+        document.getElementById("Priority").value = "";
 
     } else {
 
@@ -28,7 +32,7 @@ function SJF_CPU() {
         let TAT = new Array(AT.length);
         let CT = new Array(AT.length);
 
-        //Populate Process
+
         for (let i = 0; i < AT.length; i++) {
             Process[i] = i + 1
         }
@@ -36,73 +40,64 @@ function SJF_CPU() {
         let mat = Array(20).fill().map(() => Array(6));
 
         for (let i = 0; i < AT.length; i++) {
-            mat[i][0] = Process[i];
-            mat[i][1] = AT[i];
-            mat[i][2] = BT[i];
+            mat[i][0] = AT[i];
+            mat[i][1] = BT[i];
+            mat[i][2] = Priority[i];
+            mat[i][3] = Process[i];
         }
 
-        for (let i = 0; i < AT.length; i++) {
-            for (let j = 0; j < AT.length - i - 1; j++) {
-                if (mat[j][1] > mat[j + 1][1]) {
-                    for (let k = 0; k < 5; k++) {
-                        let temp = mat[j][k];
-                        mat[j][k] = mat[j + 1][k];
-                        mat[j + 1][k] = temp;
-                    }
-                }
-            }
-        }
+        mat = mat.sort(function (a, b) {
+            return a[0] - b[0];
+        });
 
-        mat[0][3] = mat[0][1] + mat[0][2];
-        mat[0][5] = mat[0][3] - mat[0][1];
-        mat[0][4] = mat[0][5] - mat[0][2];
+        console.log(mat)
 
 
-        let val = -1;
+        // Waiting time calculator
+        let Service = new Array(AT.length);
+        Service[0] = 0
+        WT[0] = 0
+
         for (let i = 1; i < AT.length; i++) {
-            let temp = mat[i - 1][3];
-            let low = mat[i][2];
-            for (let j = i; j < AT.length; j++) {
-                if (temp >= mat[j][1] && low >= mat[j][2]) {
-                    low = mat[j][2];
-                    val = j;
+            Service[i] = mat[i - 1][1] + Service[i - 1];
+            WT[i] = Service[i] - mat[i][0] + 1;
 
-                }
+            if (WT[i] < 0) {
+                WT[i] = 0;
             }
-            mat[val][3] = temp + mat[val][2];
-            mat[val][5] = mat[val][3] - mat[val][1];
-            mat[val][4] = mat[val][5] - mat[val][2];
 
-            for (let k = 0; k < 6; k++) {
-                let tem = mat[val][k];
-                mat[val][k] = mat[i][k];
-                mat[i][k] = tem;
-            }
         }
 
+        // Turn around time calculator
         for (let i = 0; i < AT.length; i++) {
-            Process[i] = mat[i][0];
-            AT[i] = mat[i][1];
-            BT[i] = mat[i][2];
-            WT[i] = mat[i][4];
-            TAT[i] = mat[i][5];
-            CT[i] = mat[i][3];
+            TAT[i] = mat[i][1] + WT[i];
         }
 
-        TableGen(Process, AT, BT, CT, WT, TAT, "ProcessTable");
+        let Stime = new Array(AT.length);
+        Stime[0] = 1;
+        CT[0] = Stime[0] + TAT[0];
+
+        for (let i = 1; i < AT.length; i++) {
+            Stime[i] = CT[i - 1];
+            CT[i] = Stime[i] + TAT[i] - WT[i];
+        }
+
+
+        TableGen(Process, AT, BT, CT, WT, TAT, Priority, "ProcessTable");
 
     }
 
 
 }
 
-function TableGen(Process, AT, BT, CT, WT, TAT, tablename) {
+function TableGen(Process, AT, BT, CT, WT, TAT, Priority, tablename) {
 
     document.getElementById(tablename).innerHTML = "";
 
     let table = '<thead style=\'text-align:center; vertical-align:middle\'>\n' +
         '            <tr>\n' +
         '                <th>Process</th>\n' +
+        '                <th>Priority</th>\n' +
         '                <th>Arrival Time</th>\n' +
         '                <th>Burst Time</th>\n' +
         '                <th>Completion</th>\n' +
@@ -115,6 +110,7 @@ function TableGen(Process, AT, BT, CT, WT, TAT, tablename) {
 
         table += "<tr style='text-align:center; vertical-align:middle' id=\"row_1\">\n" +
             "                <th>" + Process[i - 1] + "</th>\n" +
+            "                <td>" + Priority[i - 1] + "</td>\n" +
             "                <td>" + AT[i - 1] + "</td>\n" +
             "                <td>" + BT[i - 1] + "</td>\n" +
             "                <td>" + CT[i - 1] + "</td>\n" +
@@ -129,6 +125,7 @@ function TableGen(Process, AT, BT, CT, WT, TAT, tablename) {
         "                <th>Total :" + AT.length + "</th>\n" +
         "                <td>" + "</td>\n" +
         "                <td>" + "</td>\n" +
+        "                <td>" + "</td>\n" +
         "                <td><b>AVG : " + average(CT) + "</b></td>\n" +
         "                <td><b>AVG : " + average(TAT) + "</b></td>\n" +
         "                <td><b>AVG : " + average(WT) + "</b></td>\n" +
@@ -139,8 +136,10 @@ function TableGen(Process, AT, BT, CT, WT, TAT, tablename) {
 
 
     document.getElementById(tablename).innerHTML += table;
-    Make_chart(CT) ;
+
+    Make_chart(CT);
 }
+
 
 function Make_chart(CT) {
     var ctxB = document.getElementById("barChart").getContext('2d');
