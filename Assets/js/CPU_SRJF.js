@@ -173,13 +173,15 @@ function Make_chart(CT) {
         type: 'bar',
         data: {
             labels: labs,
-            datasets: [{
-                label: 'Completion time taken by process',
-                data: CT,
-                backgroundColor: BackCol,
-                borderColor: BordCol,
-                borderWidth: 1
-            }]
+            datasets: [
+                {
+                    label: 'Completion time taken by process',
+                    data: CT,
+                    backgroundColor: BackCol,
+                    borderColor: BordCol,
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             legend: {

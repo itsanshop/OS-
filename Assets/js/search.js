@@ -52,7 +52,7 @@ var suggestions = [
     {
         'text': 'Compare Algorithms',
         'display': 'Compare Algorithms',
-        'href': 'compare.html'
+        'href': 'Disc_compare.html'
     },
     {
         'text': 'First In First Out',

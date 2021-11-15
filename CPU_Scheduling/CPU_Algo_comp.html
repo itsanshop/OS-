@@ -10,14 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../Assets/css/animate.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="../Assets/css/style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-            crossorigin="anonymous"></script>
+    <!-- Footer -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-
     <link rel="stylesheet" type="text/css" href="../Assets/css/style.css">
     <link rel="shortcut icon" type="image/png" href="../Assets/images/website_logo1.png">
 </head>
@@ -26,9 +24,9 @@
 
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="diskscheduling_index.html">
+        <a class="navbar-brand" href="cpu_schdeuling_index.html">
             <img id="logo" src="../Assets/images/website_logo1.png" alt="logo">
-            <div class="hover-border">Disk Scheduling</div>
+            <div class="hover-border">CPU Scheduling</div>
         </a>
         <div class="divider"></div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -52,14 +50,14 @@
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="../Page_Replacement/pagereplacement_index.html">Page
                             Replacement</a></li>
-                        <li><a class="dropdown-item" href="diskscheduling_index.html">Disk Scheduling</a></li>
-                        <li><a class="dropdown-item" href="../CPU_Scheduling/cpu_schdeuling_index.html">CPU
+                        <li><a class="dropdown-item" href="../Disk_Scheduling/diskscheduling_index.html">Disk
                             Scheduling</a></li>
+                        <li><a class="dropdown-item" href="cpu_schdeuling_index.html">CPU Scheduling</a></li>
                         <li><a class="dropdown-item" href="#">Concurrency</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Disc_compare.html"><span class="hover-border">Compare</span></a>
+                    <a class="nav-link" href="#"><span class="hover-border">Compare</span></a>
                 </li>
 
                 <li class="nav-item">
@@ -72,7 +70,8 @@
                 <div class="dropdown">
                     <input id="search-input" class="form-control me-2 dropdown-toggle" data-bs-toggle="dropdown"
                            aria-expanded="false" placeholder="Type to search...">
-                    <ul id="suggestions" class="dropdown-menu dropdown-menu-dark" aria-labelledby="search-button"></ul>
+                    <ul id="suggestions" class="dropdown-menu dropdown-menu-dark" aria-labelledby="search-button">
+                    </ul>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                          class="bi bi-search" viewBox="0 0 16 16" style="position: absolute; right: 15px;">
                         <path
@@ -87,204 +86,88 @@
 <div class="block">
     <div class="overlay"></div>
     <div class="heading">
-        <h1 class="animate__animated animate__slideInUp" data-aos="fade-in" style="text-align: center;">C-SCAN
+        <h1 class="animate__animated animate__slideInUp" data-aos="fade-in" style="text-align: center; ">CPU Scheduling
+            Comparision
         </h1>
+    </div>
+    <div class="typing animate__animated animate__slideInUp">
+            <span class="type-writer" style="margin: 10px;" data-wait="200"
+                  data-words='["FCFS", "SJF", "SRJF", "Round Robin", "Priority"]'></span>
+
     </div>
     <div class="arrow-box">
         <img src="../Assets/images/down_arrow.png" alt="Downward Arrow">
     </div>
 </div>
 
-<div class="mid-block">
-    <div class="mid-heading-wrapper">
-        <div class="mid-heading">
-            <h1 class="hover-border">About</h1>
-        </div>
-    </div>
-
-    <div class="mid-cards">
-        <div class="card text-white bg-dark mb-3" style="max-width: 24rem;">
-            <div class="card-header" style="font-size: 2rem;">C SCAN</div>
-            <div class="card-body" style="overflow-y: scroll;">
-                <p class="card-text">Circular SCAN (C-SCAN) scheduling algorithm is a modified version of SCAN disk
-                    scheduling algorithm that deals with the inefficiency of SCAN algorithm by servicing the
-                    requests more uniformly. <br><br>Like SCAN (Elevator Algorithm) C-SCAN moves the head from one
-                    end
-                    servicing all the requests to the other end. However, as soon as the head reaches the other end,
-                    it immediately returns to the beginning of the disk without servicing any requests on the return
-                    trip and starts servicing again once it reaches the beginning. </p>
-                <div class="card-header bg-dark" style="font-size: 1.5rem; padding: 0; border: 0;">Advantages</div>
-                <p class="card-text">
-                <ol>
-                    <li>
-                        C-SCAN offers better uniform waiting time.
-                    </li>
-                    <br>
-                    <li>
-                        It offers a better response time.
-                    </li>
-                    <br>
-                </ol>
-                </p>
-                <div class="card-header bg-dark" style="font-size: 1.5rem; padding: 0; border: 0;">Disadvantages
-                </div>
-                <p class="card-text">
-                <ol>
-                    <li>
-                        In C-SCAN disk scheduling, there are more seek movements as compared to SCAN disk
-                        scheduling.
-                    </li>
-                    <br>
-                    <li>
-                        In C-SCAN disk scheduling, we have to move the disk head to the end of the disk even when we
-                        don’t have any request to service.
-                    </li>
-                    <br>
-                </ol>
-                </p>
-            </div>
-        </div>
-        <div class="card text-white bg-dark mb-3" style="max-width: 24rem;">
-            <div class="card-header" style="font-size: 2rem;">Algorithm</div>
-            <div class="card-body" style="overflow-y: scroll;">
-                <p class="card-text">
-                <ol>
-                    <li>A request array contains the indexes of the tracks that have been requested in ascending
-                        order of time interval.
-                        The position of the read/ write head is 'HEAD'.
-                    </li>
-                    <br>
-                    <li>
-                        The head services only in the right direction from 0 to size of the disk.
-                    </li>
-                    <br>
-                    <li>
-                        While moving in the left direction do not service any of the tracks.
-                    </li>
-                    <br>
-                    <li>
-                        When you reach at the beginning (left end) reverse the direction.
-                    </li>
-                    <br>
-                    <li>
-                        While moving in right direction it services all tracks one by one.
-                    </li>
-                    <br>
-                    <li>
-                        While moving in right direction calculate the absolute distance of the track from the head.
-                    </li>
-                    <br>
-                    <li>
-                        Increment the total seek count with this distance.
-                    </li>
-                    <br>
-                    <li>
-                        Currently serviced track position now becomes the new head position.
-                    </li>
-                    <br>
-                    <li>
-                        Go to step 6 until we reach at right end of the disk.
-                    </li>
-                    <br>
-                    <li>
-                        If you reach at the right end of the disk reverse the direction and go to step 3 until all
-                        tracks in request array have not been serviced.
-                    </li>
-                    <br>
-                </ol>
-                </p>
-            </div>
-        </div>
-    </div>
-
-</div>
 
 <div class="last-block">
 
-    <div class="mid-heading-wrapper">
-        <div class="mid-heading">
-            <h1 class="hover-border">Implementation</h1>
-        </div>
-    </div>
 
-    <div id="alert-wrapper"></div>
+    <!--Implement from here-->
+    <div class="container">
 
-    <div class="running-algo">
-        <form>
-            <div id="controls">
 
-                <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Number Of Requests</label>
-                    <input type="number" class="form-control glowing-border" id="requests">
+        <h5 style="text-align: center;margin-top:3%; margin-bottom: 2%">Enter Comma separated values </h5>
+
+
+        <div class="container"
+             style="width: 95%; height: fit-content;margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div class="col-sm-1"
+                 style="display: flex; flex-direction: row; align-items: center; justify-content: center; flex-wrap: wrap;">
+                <div
+                        style="margin: 10px; width: fit-content; display: flex; justify-content: center; align-items: center;">
+                    <strong style="white-space: nowrap;">Arrival Time:</strong>
+                    <input class="input" type="text" style="width: 100%; min-width: 225px; margin: 5px;"
+                           id="Arrivaltime">
+                </div>
+                <div
+                        style="margin: 10px; width: fit-content; display: flex; justify-content: center; align-items: center;">
+                    <strong style="white-space: nowrap;">Burst Time:</strong>
+                    <input class="input" type="text" style="width: 100%; min-width: 225px; margin: 5px;" id="Bursttime">
                 </div>
 
-                <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Total Tracks</label>
-                    <input type="number" class="form-control" id="max-track" placeholder="Maximum track number">
+                <div
+                        style="margin: 10px; width: fit-content; display: flex; justify-content: center; align-items: center;">
+                    <strong style="white-space: nowrap;">Priority:</strong>
+                    <input class="input" type="text" style="width: 100%; min-width: 225px; margin: 5px;" id="Priority">
                 </div>
 
-                <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Head Position</label>
-                    <input type="number" class="form-control" id="head" data-bs-toggle="popover"
-                           data-bs-trigger="hover" title="Important!"
-                           data-bs-content="The value of head position should not lie outside the range of track numbers.">
+                <div
+                        style="margin: 10px; width: fit-content; display: flex; justify-content: center; align-items: center;">
+                    <strong style="white-space: nowrap;">Time Quantum : </strong>
+                    <input class="form-control" type="number" style="width: 100%; min-width: 225px; margin: 5px;"
+                           id="Quantum" min="0" max="10">
                 </div>
 
-                <div class="mb-3">
-                    <label for="inputState" class="form-label">Choose Direction</label>
-                    <select id="direction" class="form-select form-control" style="width: 228px;">
-                        <option value="left" class="select">Left</option>
-                        <option value="right" class="select">Right</option>
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Tracks</label>
-                    <input type="text" class="form-control" id="tracks" placeholder="Track requests"
-                           data-bs-toggle="popover" data-bs-trigger="hover" title="Important!"
-                           data-bs-content="Make sure that the values of the tracks are either space separated or comma separated. There should not be any comma before the first track value and after the last track value. Any track request should not exceed the maximum possible track number.">
-                </div>
-
-                <div class="algo-buttons">
-                    <input id="reset-button" type="reset" class="btn btn-dark form-control last_button"
-                           style="margin: 10px;">
-                    <button id="run" type="button" class="btn btn-dark last_button disabled"
-                            data-bs-toggle="popover" data-bs-trigger="hover" title="Warning!"
-                            data-bs-content="None of the fields above should be empty. They should not contain any alphabetic or special character!"
-                            style="margin: 10px;">Run
-                    </button>
-                </div>
 
             </div>
-        </form>
+            <button id="submit" type="button" class="btn btn-dark last_button input"
+                    style="margin: 10px; margin-top: 20px;min-width: 80px;">Submit
+            </button>
+        </div>
 
-        <div class='chart-wrapper'>
-            <div id="image" class="chart-display">
-                <div class="show-element" id="chart-image">
-                    CHART WILL APPEAR HERE
-                </div>
-                <div id="chart-container" class="show-element">
-                    <div class="chartres">
-                        <canvas id="chart"></canvas>
-                    </div>
 
-                    <div id="seekShow">
-                        <div id="seek" style="width: 80%; height: 10%; text-align: center;" data-bs-toggle="popover"
-                             data-bs-placement="left" data-bs-trigger="click" title="Important!"
-                             data-bs-content="Considering the successive track seek time as 1ms.">
-                            <h4 id="temp"></h4>
-                            <h4 id="temp1"></h4>
-                        </div>
-                        <div id="download-buttons">
-                            <div id="dImageIcon"></div>
-                            <div id="dPDFIcon"></div>
-                        </div>
-                    </div>
-                </div>
+        <table style="margin-top: 30px;" class="table table-bordered table-condensed" id="ProcessTable"></table>
+
+        <div class="container my-4">
+            <hr class="my-4">
+            <div>
+                <canvas id="barChart_TAT"></canvas>
             </div>
         </div>
+        <br><br>
+        <div class="container my-4">
+            <hr class="my-4">
+            <div>
+                <canvas id="barChart_WT"></canvas>
+            </div>
+        </div>
+
     </div>
+
 </div>
+
 <br>
 <br>
 <br>
@@ -314,8 +197,9 @@
                                             <li><a href="../about.html">About Us</a></li>
                                             <li><a href="../Page_Replacement/pagereplacement_index.html">Page
                                                 Replacement</a></li>
-                                            <li><a href="diskscheduling_index.html">Disk Scheduling</a></li>
-                                            <li><a href="../CPU_Scheduling/cpu_schdeuling_index.html">CPU Scheduling</a></li>
+                                            <li><a href="../Disk_Scheduling/diskscheduling_index.html">Disk
+                                                Scheduling</a></li>
+                                            <li><a href="cpu_schdeuling_index.html">CPU Scheduling</a></li>
                                             <li><a href="#Concurrency">Concurrency</a></li>
 
                                         </ul>
@@ -366,12 +250,12 @@
                                      data-bs-parent="#accordion">
                                     <div class="footercontent">
                                         <ul style="list-style-type: none;">
-                                            <li><a href="fcfs.html">FCFS</a></li>
-                                            <li><a href="sstf.html">SSTF</a></li>
-                                            <li><a href="scan.html">SCAN</a></li>
-                                            <li><a href="cscan.html">C-SCAN</a></li>
-                                            <li><a href="look.html">LOOK</a></li>
-                                            <li><a href="clook.html">C-LOOK</a></li>
+                                            <li><a href="../Disk_Scheduling/fcfs.html">FCFS</a></li>
+                                            <li><a href="../Disk_Scheduling/sstf.html">SSTF</a></li>
+                                            <li><a href="../Disk_Scheduling/scan.html">SCAN</a></li>
+                                            <li><a href="../Disk_Scheduling/cscan.html">C-SCAN</a></li>
+                                            <li><a href="../Disk_Scheduling/look.html">LOOK</a></li>
+                                            <li><a href="../Disk_Scheduling/clook.html">C-LOOK</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -392,11 +276,12 @@
                                      data-bs-parent="#accordion">
                                     <div class="footercontent">
                                         <ul style="list-style-type: none;">
-                                            <li><a href="../CPU_Scheduling/FCFS_CPU.html">FCFS</a></li>
-                                            <li><a href="../CPU_Scheduling/SJF_CPU.html">SJF</a></li>
-                                            <li><a href="../CPU_Scheduling/SRJF_CPU.html">SRJF</a></li>
-                                            <li><a href="../CPU_Scheduling/RoundRobin_CPU.html">Round Robin</a></li>
-                                            <li><a href="../CPU_Scheduling/Priority_CPU.html">Priority</a></li>
+                                            <li><a href="FCFS_CPU.html">FCFS</a></li>
+                                            <li><a href="SJF_CPU.html">SJF</a></li>
+                                            <li><a href="SRJF_CPU.html">SRJF</a></li>
+                                            <li><a href="RoundRobin_CPU.html">Round Robin</a></li>
+                                            <li><a href="Priority_CPU.html">Priority</a></li>
+
                                         </ul>
                                     </div>
                                 </div>
@@ -461,12 +346,15 @@
     </div>
 </div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
 <script src="../Assets/js/Chart.min.js"></script>
 <script src="../Assets/js/search.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
-<script src="../Assets/js/cscan.js"></script>
-
-
+<script src="../Assets/js/CPU_Comp.js"></script>
+<script src="../Assets/js/typewriter.js"></script>
 </body>
 
 </html>
