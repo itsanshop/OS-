@@ -126,9 +126,9 @@ function TableGen(Process, AT, BT, CT, WT, TAT, Priority, tablename) {
         "                <td>" + "</td>\n" +
         "                <td>" + "</td>\n" +
         "                <td>" + "</td>\n" +
-        "                <td><b>AVG : " + average(CT) + "</b></td>\n" +
-        "                <td><b>AVG : " + average(TAT) + "</b></td>\n" +
-        "                <td><b>AVG : " + average(WT) + "</b></td>\n" +
+        "                <td><b>AVG : " + average(CT).toFixed(2) + "</b></td>\n" +
+        "                <td><b>AVG : " + average(TAT).toFixed(2) + "</b></td>\n" +
+        "                <td><b>AVG : " + average(WT).toFixed(2) + "</b></td>\n" +
         "            </tr>"
 
     table += "</tbody>\n" +
