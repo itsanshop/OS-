@@ -349,7 +349,6 @@ function Make_chart_WT(Algorithm) {
 }
 
 
-
 function RR_CPU(BT, Quantum) {
 
     let WT = new Array(BT.length);
@@ -515,7 +514,7 @@ function SJF_CPU(AT, BT) {
         Process[i] = i + 1
     }
 
-    let mat = Array(20).fill().map(() => Array(6));
+    let mat = Array(20).fill().map(() => Array(10));
 
     for (let i = 0; i < AT.length; i++) {
         mat[i][0] = Process[i];
@@ -588,7 +587,7 @@ function SRJF_CPU(AT, BT) {
         Process[i] = i + 1
     }
 
-    let mat = Array(20).fill().map(() => Array(6));
+    let mat = Array(50).fill().map(() => Array(50));
 
     for (let i = 0; i < AT.length; i++) {
         mat[i][0] = Process[i];

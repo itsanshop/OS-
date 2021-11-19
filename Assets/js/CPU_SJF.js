@@ -33,7 +33,7 @@ function SJF_CPU() {
             Process[i] = i + 1
         }
 
-        let mat = Array(20).fill().map(() => Array(6));
+        let mat = Array(50).fill().map(() => Array(50));
 
         for (let i = 0; i < AT.length; i++) {
             mat[i][0] = Process[i];
