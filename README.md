@@ -1,6 +1,6 @@
 # Introduction
 
-This website is designed to provide complete information to what is an operating system and what are the different algorithms that supports the operating system.
+This <a href="https://blissful-dubinsky-f91211.netlify.app/">website</a> is designed to provide complete information to what is an operating system and what are the different algorithms that supports the operating system.
 It was originally designed by our super seniors (Page Replacement algorithm) and is further developed by our seniors (Disk Scheduling algorithm) and us (CPU Scheduling algorithm) and is going to be developed by our juniors (Concurrency and deadlock) in the probable future.
 The home page of the website shows what actually an operating system is and a video depicting the same. Further links and directions are provided in the UI itself.
 # Algorithms
