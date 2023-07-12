@@ -39,7 +39,6 @@ YET TO BE IMPLEMENTED...
 
 # How to Run our code:
 <ol>
-<li> Go to link - https://github.com/Atri10/osvirtuallab</li>
 <li> Click on the green drop down button named 'Code'</li>
 <li> Now click on the 'Download ZIP' to download the zip file of the full code on your machine.</li>
 <li> Extract the downloaded file on your desired location.</li>
@@ -88,24 +87,5 @@ Technologies used:
 Code editor used for implementing CPU_Scheduling algorithm: VS Code
 
 # Credits:
-
-## Page Replacement: 
-1. Darshan Patel
-2. Kunal Kataria
-3. Neel Yadav
-4. Aashil Shah
-
-## Disk Scheduling:
-1. Hansal Shah
-2. Jainil Patel
-3. Divyansh Mahida
-4. Divyansh Jain
-5. Rushabh Shah
-
-## CPU Scheduling:
-1. Atri Patel
-2. Harsh Godhani
-3. Jenil Kundaliya
-4. Jay Panchal
-5. Kunj Manavadariya
-6. Harsh Makadiya
+1)Ansh Gupta
+2)Aditya A Navale
